@@ -129,7 +129,8 @@ func (wsc *websocketClientManager) heartBeat() {
 }
 
 func main() {
-	wsc := NewWsClientManager("levitas.quakeai.tech", "31081", "/login/store_id/topic/111", 10)
+	wsc := NewWsClientManager("10.10.10.114", "12345", "/login/A/数联宝/111", 10)
+	//wsc := NewWsClientManager("levitas.quakeai.tech", "31081", "/login/store_id/topic/111", 10)
 
 	wsc.sendMsgChan <- "hello websocket"
 	wsc.start()
