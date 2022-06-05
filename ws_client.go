@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/url"
@@ -205,7 +206,13 @@ func (wsc *websocketClientManager) heartBeat() {
 }
 
 func main() {
-	wsc := NewWsClientManager("10.10.10.114", "12345", "/login/数联宝/111", 10)
+	var topic string
+	var deviceId string
+	flag.StringVar(&topic, "topic", "数联宝", "设备类型")
+	flag.StringVar(&deviceId, "device_id", "001", "设备id")
+
+	flag.Parse()
+	wsc := NewWsClientManager("0.0.0.0", "12345", "/login/"+topic+"/"+deviceId, 10)
 	//wsc := NewWsClientManager("levitas.quakeai.tech", "31081", "/login/store_id/topic/111", 10)
 
 	wsc.sendMsgChan <- "hello websocket"
